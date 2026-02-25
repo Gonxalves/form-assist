@@ -4,7 +4,7 @@
 form_mac.py - Form Assistant invisible pour macOS
 
 Tourne en arriere-plan, zero fenetre.
-  Cmd+I  -> screenshot + analyse + vibrations
+  Cmd+B  -> screenshot + analyse + vibrations
   Ctrl+C -> quitter
 
 Les vibrations indiquent la position de la bonne reponse :
@@ -218,7 +218,7 @@ def analyze(api_key: str):
 
 
 # ============================================================
-#  HOTKEY (Cmd+I)
+#  HOTKEY (Cmd+B)
 # ============================================================
 
 class HotkeyListener:
@@ -248,7 +248,7 @@ class HotkeyListener:
             return
 
         char = getattr(key, "char", None)
-        if char == "i" or char == "\x09":
+        if char == "b" or char == "\x02":
             now = time.time()
             if now - self._last > 1.5:
                 self._last = now
@@ -283,12 +283,12 @@ def main():
     print("  Form Assistant (macOS) — mode invisible")
     print(f"  Cle: ...{api_key[-8:]}")
     print()
-    print("  Cmd+I   -> Analyser le formulaire")
+    print("  Cmd+B   -> Analyser le formulaire")
     print("  Ctrl+C  -> Quitter")
     print("=" * 44)
     print()
     print("  Ouvre un formulaire dans ton navigateur")
-    print("  puis appuie sur Cmd+I")
+    print("  puis appuie sur Cmd+B")
     print()
 
     hotkeys = HotkeyListener(on_analyze=lambda: analyze(api_key))
